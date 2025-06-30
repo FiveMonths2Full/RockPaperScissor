@@ -1,79 +1,92 @@
 function getComputerChoice() {
-    return Math.floor(Math.random() *3) +1;
+    return Math.floor(Math.random() *3) +1; //random number 1-3
 }
 function getUserChoice() {
     let userChoice = prompt("Enter your choice: rock, paper, or scissors?");
-    let correctChoice = false;
-    userChoice = userChoice.toLowerCase();  
-    while (correctChoice == false) {
+    userChoice = userChoice.toLowerCase(); //makes all strings lowercase for easy comparison
+    let correctChoice = false;  
+    while (correctChoice == false) { //error handling to make sure users enter correct terms
         if(userChoice == "rock") {
             correctChoice = true;
-            return 1;
+            return 1; //converts user input rock to number 1 for better comparison
         }
         else if(userChoice == "paper") {
             correctChoice = true;
-            return 2;
+            return 2; //converts user input paper to number 1 for better comparison
         }
         else if(userChoice == "scissors") {
             correctChoice = true;
-            return 3;
+            return 3; //converts user input scissors to number 1 for better comparison
         }
         else {
-            alert("please enter a valid choice");
+            alert("please enter a valid choice"); //alert for incorrect input
             userChoice = prompt("Enter your choice: rock, paper, or scissors?");
             userChoice = userChoice.toLowerCase();
         }
     }     
 }
-let userScore = 0;
+let userScore = 0; // score counters
 let computerScore = 0;
 function playRound(userChoice,computerChoice) {
-    if (userChoice == 1) {
+    if (userChoice == 1) { // if statement for rock (refer to line 11)
         if (computerChoice == 2) {
             alert(" You lose! Paper beats Rock");
-            computerScore++;
+            computerScore++; // lost round
             console.log(computerScore)
         }
         else if (computerChoice == 3) {
             alert(" You Win! Rock beats Scissors.");
-            userScore++;
+            userScore++; // won round
             console.log(computerScore)
+        }
+        else {
+            alert("It's a tie!");
+            userScore++;
+            computerScore++;
         }
     }
-    else if (userChoice ==2) {
+    else if (userChoice ==2) { // if statement for paper (refer to line 15)
         if (computerChoice == 3) {
             alert(" You Lose! Scissors beats Paper");
-            computerScore++;
+            computerScore++; // won round
             console.log(computerScore)
         }
-        else if (computerChoice == 1) {
+        else if (computerChoice == 1) { 
             alert(" You Win! Paper beats Rock.");
-            userScore++;
+            userScore++; // lost round
             console.log(computerScore)
+        }
+        else {
+            alert("It's a tie!");
+            userScore++;
+            computerScore++;
         }
 
     }
-    else if (userChoice == 3) {
+    else if (userChoice == 3) { // if statement for scissors (refer to line 19)
         if (computerChoice == 1) {
             alert(" You Lose! Rock beats Scissors");
-            computerScore++;
+            computerScore++; // you lost
             console.log(computerScore)
         }
         else if (computerChoice == 2) {
             alert(" You Win! Scissors beats Paper.");
-            userScore++;
+            userScore++; //you won
             console.log(computerScore)
         }
+        else {
+            alert("It's a tie!");
+            userScore++;
+            computerScore++;
+        }
     }
-    else {
-        alert("It's a tie!");
-    }
+    
 }
 
 function playGame(num) {
     for (let i = 1; i <= num; i++) {
         let userChoice = getUserChoice();
-        let computerChoice = getComputerChoice();
+        let computerChoice = getComputerChoice;
         playRound(userChoice,computerChoice);
     }
     if (computerScore > userScore) {
