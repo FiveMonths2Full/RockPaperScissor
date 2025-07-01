@@ -28,7 +28,8 @@ function getUserChoice() {
 let userScore = 0; // score counters
 let computerScore = 0;
 function playRound(userChoice,computerChoice) {
-    if (userChoice == 1) { // if statement for rock (refer to line 11)
+    userChoice = userChoice.toLowerCase();
+    if (userChoice == "rock") { // if statement for rock (refer to line 11)
         if (computerChoice == 2) {
             alert(" You lose! Paper beats Rock");
             computerScore++; // lost round
@@ -45,7 +46,7 @@ function playRound(userChoice,computerChoice) {
             computerScore++;
         }
     }
-    else if (userChoice ==2) { // if statement for paper (refer to line 15)
+    else if (userChoice == "paper") { // if statement for paper (refer to line 15)
         if (computerChoice == 3) {
             alert(" You Lose! Scissors beats Paper");
             computerScore++; // won round
@@ -61,9 +62,18 @@ function playRound(userChoice,computerChoice) {
             userScore++;
             computerScore++;
         }
+        const displayPanel = document.createElement("div");
+        const displayComputerScore = document.createElement("h3");
+        const displayUserScore = document.createElement("h3");
+
+        displayPanel.appendChild(displayComputerScore);
+        displayPanel.appendChild(displayUserScore);
+
+        displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+        displayUserScore.textContent = `User Score: ${userScoe}`;
 
     }
-    else if (userChoice == 3) { // if statement for scissors (refer to line 19)
+    else if (userChoice == "scissors") { // if statement for scissors (refer to line 19)
         if (computerChoice == 1) {
             alert(" You Lose! Rock beats Scissors");
             computerScore++; // you lost
@@ -80,6 +90,7 @@ function playRound(userChoice,computerChoice) {
             computerScore++;
         }
     }
+
     
 }
 
@@ -99,4 +110,10 @@ function playGame(num) {
         alert(`You tied the game and finished with a total score of Computer score: ${computerScore}, User Score ${userScore}.`);
     }
 }
-playGame(3);
+const buttons = document.querySelectorAll("button");
+buttons.forEach(btn => {
+    btn.addEventListener("click", (e) =>{
+        playRound(btn.textContent,getComputerChoice());
+    });
+})
+
