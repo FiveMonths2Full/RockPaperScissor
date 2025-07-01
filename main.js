@@ -33,12 +33,10 @@ function playRound(userChoice,computerChoice) {
         if (computerChoice == 2) {
             alert(" You lose! Paper beats Rock");
             computerScore++; // lost round
-            console.log(computerScore)
         }
         else if (computerChoice == 3) {
             alert(" You Win! Rock beats Scissors.");
             userScore++; // won round
-            console.log(computerScore)
         }
         else {
             alert("It's a tie!");
@@ -50,28 +48,16 @@ function playRound(userChoice,computerChoice) {
         if (computerChoice == 3) {
             alert(" You Lose! Scissors beats Paper");
             computerScore++; // won round
-            console.log(computerScore)
         }
         else if (computerChoice == 1) { 
             alert(" You Win! Paper beats Rock.");
             userScore++; // lost round
-            console.log(computerScore)
         }
         else {
             alert("It's a tie!");
             userScore++;
             computerScore++;
         }
-        const displayPanel = document.createElement("div");
-        const displayComputerScore = document.createElement("h3");
-        const displayUserScore = document.createElement("h3");
-
-        displayPanel.appendChild(displayComputerScore);
-        displayPanel.appendChild(displayUserScore);
-
-        displayComputerScore.textContent = `Computer Score: ${computerScore}`;
-        displayUserScore.textContent = `User Score: ${userScoe}`;
-
     }
     else if (userChoice == "scissors") { // if statement for scissors (refer to line 19)
         if (computerChoice == 1) {
@@ -86,12 +72,43 @@ function playRound(userChoice,computerChoice) {
         }
         else {
             alert("It's a tie!");
-            userScore++;
-            computerScore++;
         }
     }
 
-    
+        const section = document.querySelector("#displayPanel");
+
+        const oldPanel = section.querySelector(".scorePanel")
+        if (oldPanel) {
+            oldPanel.remove();
+        }
+
+        const displayPanel = document.createElement("div");
+        displayPanel.classList.add("scorePanel")
+
+        const displayComputerScore = document.createElement("h3");
+        const displayUserScore = document.createElement("h3");
+
+        displayPanel.appendChild(displayComputerScore);
+        displayPanel.appendChild(displayUserScore);
+
+        displayComputerScore.textContent = `Computer Score: ${computerScore}`;
+        displayUserScore.textContent = `User Score: ${userScore}`;
+
+        section.appendChild(displayPanel);
+        if (computerScore === 5) {
+            displayComputerScore.remove();
+            displayUserScore.remove();
+            const computerWinnerText = document.createElement("h1")
+            computerWinnerText.textContent = "Oh no, the computer has won!"
+            displayPanel.appendChild(computerWinnerText)
+        }
+        else if (userScore === 5) {
+            displayComputerScore.remove();
+            displayUserScore.remove();
+            const userWinnerText = document.createElement("h1")
+            userWinnerText.textContent = "Congratulations you won!"
+            displayPanel.appendChild(userWinnerText);
+        }
 }
 
 function playGame(num) {
