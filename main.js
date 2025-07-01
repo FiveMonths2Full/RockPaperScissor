@@ -40,8 +40,6 @@ function playRound(userChoice,computerChoice) {
         }
         else {
             alert("It's a tie!");
-            userScore++;
-            computerScore++;
         }
     }
     else if (userChoice == "paper") { // if statement for paper (refer to line 15)
@@ -55,8 +53,6 @@ function playRound(userChoice,computerChoice) {
         }
         else {
             alert("It's a tie!");
-            userScore++;
-            computerScore++;
         }
     }
     else if (userChoice == "scissors") { // if statement for scissors (refer to line 19)
@@ -101,6 +97,8 @@ function playRound(userChoice,computerChoice) {
             const computerWinnerText = document.createElement("h1")
             computerWinnerText.textContent = "Oh no, the computer has won!"
             displayPanel.appendChild(computerWinnerText)
+            computerScore = 0;
+            userScore = 0;
         }
         else if (userScore === 5) {
             displayComputerScore.remove();
@@ -108,6 +106,8 @@ function playRound(userChoice,computerChoice) {
             const userWinnerText = document.createElement("h1")
             userWinnerText.textContent = "Congratulations you won!"
             displayPanel.appendChild(userWinnerText);
+            computerScore = 0;
+            userScore = 0;
         }
 }
 
